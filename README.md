@@ -1,6 +1,6 @@
 # database
 Multithreaded Database Server and Client
-
+*Note: To use the file, make sure to compile using the Makefile. make all in the terminal window will generate all the necessary executables. Refer to the Makefile for more information.*
 
 ## Overview:
 This is a web-based TCP database server and client suite. TCP is used because multiple clients will be working on the dataset at the same time, 
