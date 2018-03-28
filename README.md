@@ -19,7 +19,7 @@ print to that file.
 
 db.c contains the functionality for a multithread safe database that implements a binary tree structure to maintain data. Fine grain locking is implemented with hand over hand locking to ensure that data does not get clobbered when different threads come in to edit. db add, remove, and search are the functions that were edited, and they all use hand over hand.
 
-## Q&A about the project
+# Q&A about the project
 
 
 ##### 1. How many threads with this functionality should be running on the server at any given time?
