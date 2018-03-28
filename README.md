@@ -42,12 +42,12 @@ db.c contains the functionality for a multithread safe database that implements 
 
 [ACCEPT] The accept() system call causes the process to do nothing until a client connects to the server. Thus, it wakes up the process when a connection from a client has been successfully established. It relies on listen. It returns a new file descriptor, and all communication on this connection should be done using the new file descriptor. The second argument is a reference pointer to the address of the client on the other end of the connection, and the third argument is the size of this structure. If accept is not called, you cannot connect multiple clients onto the server. 
 
-##### 4. Which protocol (TCP or UDP) is used for communication? Why is this protocol used? (Hint: see line 35 in comm.c)
+##### 4. Which protocol (TCP or UDP) is used for communication? Why is this protocol used?
 TCP is used because reliability is very important in a database. If connection is interrupted, the server is expected let the client know that there was some sort of error. Also, if datagrams are used instead, the order in which instructions are sent will not be guarenteed, which means that adding a node, then deleting it, may result in undefined behavior beacuse you can't delete a node before it's been created. 
 
-##### 5. Describe what comm_serve does. How are the response and command parameters used? What would happen if the stream pointed to by cxstr were closed?
+##### 5. What does comm_serve do? How are the response and command parameters used? What would happen if the stream pointed to by cxstr were closed?
 If there is a response given as the input: comm_serve writes the input response string into the input file, and does error checking on the response. Then it reads from the command pointer exactly BUFLEN characters, and puts all of that to the file as well.
 If there is no response to write, it just does the second step. 
 
-##### 6. Describe, in detail, what happens during each iteration of the while loop in the listener function. Be sure to include explanations of all significant function calls.
+##### 6. What happens during each iteration of the while loop in the listener function?
 The listen call from before the while loop generates a backlog of clients that are trying to connect. The purpose of this while loop is to handle each of these clients. First, a new sockaddr_in struct is created, representing the client's address. Next, the client's socket ID (file descriptor) is obtained through a call to accept. It needs input lsock because it checks to see the queue of pending connections for the listening socket. Now that we've obtained the client socket and done the necessary error checks, we've successfully connected to the client, so a success message is printed. Next, we set cxstr to equal to the file that we've just created (using the file descriptor of the client we obtained from accept.) If the opening of this file goes through without error, server is called on the file that has just been opened. 
