@@ -1,5 +1,5 @@
 # Multithreaded Database Server and Client
-*Note: To use the database, make sure to compile using the Makefile. `make all` in the terminal window will generate all the necessary executables. Refer to the Makefile for more information.*
+*Note: To use the database, make sure to compile using the Makefile. `make all` in the terminal window will generate all the necessary executables. Refer to the Makefile for more information. Most of the important code is located in db.c.*
 
 ## Overview:
 This is a web-based TCP database server and client suite. TCP is used because multiple clients will be working on the dataset at the same time, 
